@@ -1,16 +1,16 @@
-const PASSWORD = 'secret_sauce';
+const PASSWORD = process.env.PASSWORD || 'secret_sauce';
 
 export const users = {
   standard: {
-    username: 'standard_user',
+    username: process.env.STANDARD_USER || 'standard_user',
     password: PASSWORD,
   },
   locked: {
-    username: 'locked_out_user',
+    username: process.env.LOCKED_USER || 'locked_out_user',
     password: PASSWORD,
   },
   problem: {
-    username: 'problem_user',
+    username: process.env.PROBLEM_USER || 'problem_user',
     password: PASSWORD,
   },
 };
