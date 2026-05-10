@@ -4,11 +4,13 @@ import { CatalogPage } from '../pages/CatalogPage';
 import { users } from '../test-data/users';
 import { CartPage } from '../pages/CartPage';
 import { CheckoutPage } from '../pages/CheckoutPage';
+import { NavigationPage } from '../pages/NavigationPage';
 
 type MyFixtures = {
   catalogPage: CatalogPage;
   cartPage: CartPage;
   checkoutPage: CheckoutPage;
+  navigationPage: NavigationPage;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -42,6 +44,14 @@ export const test = base.extend<MyFixtures>({
     await cartPage.goToCheckout();
     const checkoutPage = new CheckoutPage(page);
     await use(checkoutPage);
+  },
+
+  navigationPage: async ({ page }, use) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+    await loginPage.login(users.standard.username, users.standard.password);
+    const navigationPage = new NavigationPage(page);
+    await use(navigationPage);
   },
 });
 
